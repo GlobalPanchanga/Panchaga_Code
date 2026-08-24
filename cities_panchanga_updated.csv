@@ -1,0 +1,95 @@
+display_city,search_city,state_or_region,country,timezone,geoname_id
+Kuwait,Kuwait City,Al Asimah,Kuwait,Asia/Kuwait,285787
+Coimbatore,Coimbatore,Tamil Nadu,India,Asia/Kolkata,1273865
+Windsor,Windsor,Ontario,Canada,America/New_York,6182962
+London,London,London,United Kingdom,Europe/London,2643743
+Belgaum,Belgaum,Karnataka,India,Asia/Kolkata,1276533
+Hubli,Hubli,Karnataka,India,Asia/Kolkata,1269920
+Vancouver,Vancouver,British Columbia,Canada,America/Los_Angeles,6173331
+Belfast,Belmont,New York,United States,America/New_York,5108728
+Seoul,Seoul,Seoul,South Korea,Asia/Seoul,1835848
+Auckland,Auckland,Auckland,New Zealand,Pacific/Auckland,2193733
+Wellington,Wellington,Wellington,New Zealand,Pacific/Auckland,2179537
+Christchurch,Christchurch,Canterbury,New Zealand,Pacific/Auckland,2192362
+Agartala,Agartala,Tripura,India,Asia/Kolkata,1279290
+Guwahati,Guwahati,Assam,India,Asia/Kolkata,1271476
+Shiliguri,Shiliguri,West Bengal,India,Asia/Kolkata,1256525
+Aizawl,Aizawl,Mizoram,India,Asia/Kolkata,1279186
+Gangtok,Gangtok,Sikkim,India,Asia/Kolkata,1271631
+Silchar,Silchar,Assam,India,Asia/Kolkata,1256287
+Dibrugarh,Dibrugarh,Assam,India,Asia/Kolkata,1272648
+Imphal,Imphal,Manipur,India,Asia/Kolkata,1269771
+Dimapur,Dimapur,Nagaland,India,Asia/Kolkata,1272552
+Itanagar,Itanagar,Arunachal Pradesh,India,Asia/Kolkata,1269655
+Madurai,Madurai,Tamil Nadu,India,Asia/Kolkata,1264521
+Kumbakonam,Kumbakonam,Tamil Nadu,India,Asia/Kolkata,1265683
+Chidambaram,Chidambaram,Tamil Nadu,India,Asia/Kolkata,1274256
+Kanchipuram,Kanchipuram,Tamil Nadu,India,Asia/Kolkata,1268159
+Srirangam,Tiruchirappalli,Tamil Nadu,India,Asia/Kolkata,1254388
+Guruvayur,Guruvayur,Kerala,India,Asia/Kolkata,1270603
+Pandharpur,Pandharpur,Maharashtra,India,Asia/Kolkata,1260546
+Kolhapur,Kolhapur,Maharashtra,India,Asia/Kolkata,1266285
+Nagpur,Nagpur,Maharashtra,India,Asia/Kolkata,1262180
+Visakhapatnam,Visakhapatnam,Andra Pradesh,India,Asia/Kolkata,1253102
+Dubai,Dubai,Dubai,United Arab Emirates,Asia/Dubai,292223
+Doha,Doha,Baladīyat ad Dawḩah,Qatar,Asia/Qatar,290030
+Zurich,Zurich,Zurich,Switzerland,Europe/Zurich,2657896
+Esslingen,Esslingen,Esslingen,Germany,Europe/Berlin,2928751
+Ayodhya,Ajodhya,Uttar Pradesh,India,Asia/Kolkata,1278094
+Pittsford,Pittsford,New York,United States,America/New_York,5131614
+Greece,Greece,New York,United States,America/New_York,5119251
+Syracuse,Syracuse,New York,United States,America/New_York,5140405
+Columbus,Columbus,Indiana,United States,America/Indiana/Indianapolis,4256038
+Raleigh,Raleigh,North Carolina,United States,America/New_York,4487042
+Charlotte,Charlotte,North Carolina,United States,America/New_York,4460243
+Bengaluru,Bengaluru,Karnataka,India,Asia/Kolkata,1277333
+Mysuru,Mysuru,Karnataka,India,Asia/Kolkata,1262321
+T Narasipura,Mysuru,Karnataka,India,Asia/Kolkata,1262321
+Mangalore,Mangalore,Karnataka,India,Asia/Kolkata,1263780
+Udupi,Udipi,Karnataka,India,Asia/Kolkata,1253952
+Surat,Surat,Gujarat,India,Asia/Kolkata,1255364
+Pune,Pune,Maharashtra,India,Asia/Kolkata,1259229
+Vadodara,Baroda,Gujarat,India,Asia/Kolkata,1253573
+Hyderabad,Hyderabad,Telangana,India,Asia/Kolkata,1269843
+Rochester,Rochester,New York,United States,America/New_York,5134086
+Stonybrook,Stonybrook,New York,United States,America/New_York,5139865
+Lafayette,Lafayette,Indiana,United States,America/Indiana/Indianapolis,4922462
+Chicago,Chicago,Illinois,United States,America/Chicago,4887398
+Dallas,Dallas,Texas,United States,America/Chicago,4684888
+Houston,Houston,Texas,United States,America/Chicago,4699066
+Phoenix,Phoenix,Arizona,United States,America/Phoenix,5308655
+San Francisco,San Francisco,California,United States,America/Los_Angeles,5391959
+Los Angeles,Los Angeles,California,United States,America/Los_Angeles,5368361
+Seattle,Seattle,Washington,United States,America/Los_Angeles,5809844
+Tampa,Tampa,Florida,United States,America/New_York,4174757
+Orlando,Orlando,Florida,United States,America/New_York,4167147
+Richmond,Richmond,Virginia,United States,America/New_York,4781708
+Baltimore,Baltimore,Maryland,United States,America/New_York,4347778
+Philadelphia,Philadelphia,Pennsylvania,United States,America/New_York,4560349
+New York,New York City,New York,United States,America/New_York,5128581
+New Jersey,New Jersey,New Jersey,United States,America/New_York,5099836
+Buffalo,Buffalo,New York,United States,America/New_York,5110629
+Cleveland,Cleveland,Ohio,United States,America/New_York,5150529
+Columbus,Columbus,Ohio,United States,America/New_York,4509177
+Cincinnati,Cincinnati,Ohio,United States,America/New_York,4508722
+Knoxville,Knoxville,Tennessee,United States,America/New_York,4634946
+Nashville,Nashville,Tennessee,United States,America/Chicago,4644585
+Placentia,Placentia,California,United States,America/Los_Angeles,5383527
+Atlanta,Atlanta,Georgia,United States,America/New_York,4180439
+Chennai,Chennai,Tamil Nadu,India,Asia/Kolkata,1264527
+Thiruvananthapuram,Thiruvananthapuram,Kerala,India,Asia/Kolkata,1254163
+Mumbai,Mumbai,Maharashtra,India,Asia/Kolkata,1275339
+Kolkata,Kolkata,West Bengal,India,Asia/Kolkata,1275004
+Bhubaneswar,Bhubaneswar,Odisha,India,Asia/Kolkata,1275817
+Tirupati,Tirupati,Andhra Pradesh,India,Asia/Kolkata,1254360
+Bhopal,Bhopal,Madhya Pradesh,India,Asia/Kolkata,1275841
+Varanasi,Varanasi,Uttar Pradesh,India,Asia/Kolkata,1253405
+Prayagraj,Prayagraj,Uttar Pradesh,India,Asia/Kolkata,1278994
+Lucknow,Lucknow,Uttar Pradesh,India,Asia/Kolkata,1264733
+Srinagar,Srinagar,Jammu and Kashmir,India,Asia/Kolkata,1255634
+Brisbane,Brisbane,Queensland,Australia,Australia/Brisbane,2174003
+Melbourne,Melbourne,Victoria,Australia,Australia/Melbourne,2158177
+Adelaide,Adelaide,South Australia,Australia,Australia/Adelaide,2078025
+Perth,Perth,Western Australia,Australia,Australia/Perth,2063523
+Canberra,Canberra,Australian Capital Territory,Australia,Australia/Sydney,2172517
+Sydney,Sydney,New South Wales,Australia,Australia/Sydney,2147714

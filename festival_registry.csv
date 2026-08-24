@@ -1,0 +1,14 @@
+﻿Festival Pattern,Canonical Festival,Engine,Discovery Enabled,Execution Enabled,Display Priority,Notes
+Ekadashi,Ekadashi,EKADASHI,Yes,Yes,20,Matches all named Ekadashis; independent Ekadashi engine determines actual observance.
+Krishna Janmashtami,Sri Krishna Jayanthi,KRISHNA_JAYANTHI,Yes,Yes,10,Anchor only; independent Ashtami-Rohini-Nishita engine determines observance.
+Krishna Jayanthi,Sri Krishna Jayanthi,KRISHNA_JAYANTHI,Yes,Yes,10,Naming variant for Krishna Janmashtami.
+Janmashtami,Sri Krishna Jayanthi,KRISHNA_JAYANTHI,Yes,Yes,10,Naming variant for Krishna Janmashtami.
+Sankranti,Sankramana,SANKRAMANA,Yes,Yes,20,Matches names such as Simha Sankranti; engine implemented.
+Sankramana,Sankramana,SANKRAMANA,Yes,Yes,20,Alternate naming used in our system.
+Surya Grahan,Surya Grahana,GRAHANA,Yes,Yes,5,Solar-eclipse candidate; Grahana engine implemented.
+Chandra Grahan,Chandra Grahana,GRAHANA,Yes,Yes,5,Lunar-eclipse candidate; Grahana engine implemented.
+Nag Panchami,Nag Panchami,NAG_PANCHAMI,Yes,Yes,20,Engine implemented.
+Varalakshmi Vrat,Varamahalakshmi Vrata,VARAMAHALAKSHMI,Yes,Yes,20,Drik naming variant; engine implemented.
+Varamahalakshmi,Varamahalakshmi Vrata,VARAMAHALAKSHMI,Yes,Yes,20,Alternate naming variant.
+Kalki Jayanti,Kalki Jayanthi,KALKI_JAYANTHI,Yes,Yes,20,Distinct from Krishna Jayanthi; engine implemented.
+Kalki Jayanthi,Kalki Jayanthi,KALKI_JAYANTHI,Yes,Yes,20,Alternate spelling.

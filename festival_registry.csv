@@ -12,3 +12,14 @@ Varalakshmi Vrat,Varamahalakshmi Vrata,VARAMAHALAKSHMI,Yes,Yes,20,Drik naming va
 Varamahalakshmi,Varamahalakshmi Vrata,VARAMAHALAKSHMI,Yes,Yes,20,Alternate naming variant.
 Kalki Jayanti,Kalki Jayanthi,KALKI_JAYANTHI,Yes,Yes,20,Distinct from Krishna Jayanthi; engine implemented.
 Kalki Jayanthi,Kalki Jayanthi,KALKI_JAYANTHI,Yes,Yes,20,Alternate spelling.
+Varaha Jayanti,Varaha Jayanthi,VARAHA_JAYANTHI,Yes,Yes,20,Date-only Month Panchang mention; no detail-page scraping.
+Ganesh Chaturthi,Ganesha Chaturthi,GANESHA_CHATURTHI,Yes,Yes,20,Date-only Month Panchang mention; preserve each city-specific displayed date.
+Rishi Panchami,Rishi Panchami,RISHI_PANCHAMI,Yes,Yes,20,Date-only Month Panchang mention; preserve each city-specific displayed date.
+Vamana Jayanti,Vamana Jayanthi,VAMANA_JAYANTHI,Yes,Yes,20,Date-only Month Panchang mention; preserve each city-specific displayed date.
+Anant Chaturdashi,Ananta Chaturdashi,ANANTA_CHATURDASHI,Yes,Yes,20,Date-only Month Panchang mention; no detail-page scraping.
+Pitrupaksha Begins,Pitrupaksha Begins,PITRUPAKSHA_BEGINS,Yes,Yes,20,Date-only Month Panchang mention; preserve each city-specific displayed date.
+Navratri Begins,Navratri Begins,NAVRATRI_BEGINS,Yes,Yes,20,Date-only Month Panchang mention; preserve each city-specific displayed date.
+Saraswati Puja,Saraswati Puja,SARASWATI_PUJA,Yes,Yes,20,Date-only Month Panchang mention; preserve each city-specific displayed date.
+Durga Ashtami,Durga Ashtami,DURGA_ASHTAMI,Yes,Yes,20,Date-only Month Panchang mention; preserve each city-specific displayed date.
+Maha Navami,Maha Navami,MAHA_NAVAMI,Yes,Yes,20,Date-only Month Panchang mention; preserve each city-specific displayed date.
+Dussehra,Vijayadashami (Dussehra),VIJAYADASHAMI,Yes,Yes,20,Drik naming for Vijayadashami; preserve each city-specific displayed date. The engine also publishes Madhwa Jayanthi on the same selected date.

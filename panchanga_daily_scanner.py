@@ -1936,6 +1936,27 @@ def format_special_events_for_display(events_value: Any) -> str:
     )
 
 
+def get_public_special_event_tail(row: pd.Series) -> tuple[str, str]:
+    """Return the public-facing final special-event row.
+
+    Krishna Jayanthi's Note contains an internal selection-rule code intended
+    for audit/debugging.  When the approved master provides a Message for
+    Krishna Jayanthi, display that Message publicly instead.  All other
+    festivals keep their existing Note behavior unchanged.
+    """
+    events = clean_value(row.get("Special Events", ""))
+    message = clean_value(row.get("Message", ""))
+    note = clean_value(row.get("Note", ""))
+
+    if "krishna jayanthi" in events.lower() and message:
+        return "Message", message
+
+    if note:
+        return "Note", note
+
+    return "", ""
+
+
 def build_daily_text(
     df_timezone: pd.DataFrame,
     date_value: str,
@@ -2036,10 +2057,12 @@ def build_daily_text(
         if details:
             lines.append(f"Special timing/details: {details}")
 
-        note = clean_value(row.get("Note", ""))
+        public_label, public_text = get_public_special_event_tail(row)
 
-        if note:
-            lines.append(f"Note: {strip_simple_bold_markers(note)}")
+        if public_text:
+            lines.append(
+                f"{public_label}: {strip_simple_bold_markers(public_text)}"
+            )
 
         month_url = clean_value(row.get("Month Page URL", ""))
 
@@ -2253,14 +2276,20 @@ def city_details_html(row: pd.Series) -> str:
             """
         )
 
-    note = clean_value(row.get("Note", ""))
+    public_label, public_text = get_public_special_event_tail(row)
 
-    if note:
+    if public_text:
+        fixed_key = "message" if public_label == "Message" else "note"
+        rendered_public_text = (
+            html_escape(public_text)
+            if public_label == "Message"
+            else html_with_simple_bold(public_text)
+        )
         rows_html.append(
             f"""
             <div class="field-row special">
-                <div class="field-label" data-i18n-fixed="note">Note</div>
-                <div class="field-value" data-i18n-value data-simple-bold="true" data-original="{html_escape(note)}">{html_with_simple_bold(note)}</div>
+                <div class="field-label" data-i18n-fixed="{fixed_key}">{html_escape(public_label)}</div>
+                <div class="field-value" data-i18n-value data-original="{html_escape(public_text)}">{rendered_public_text}</div>
             </div>
             """
         )
@@ -2810,7 +2839,8 @@ def build_daily_html(
                     cities_beginning: "Cities beginning with",
                     special_event: "Special event",
                     special_details: "Special timing/details",
-                note: "Note",
+                    note: "Note",
+                    message: "Message",
                     footer_note:
                         "All dates and timings are local to the listed location. " +
                         "Source details are linked city-wise to Drik Panchang."
@@ -2826,7 +2856,8 @@ def build_daily_html(
                     cities_beginning: "ಈ ಅಕ್ಷರದಿಂದ ಆರಂಭವಾಗುವ ನಗರಗಳು",
                     special_event: "ವಿಶೇಷ ಆಚರಣೆ",
                     special_details: "ವಿಶೇಷ ಸಮಯ / ವಿವರಗಳು",
-                note: "ಸೂಚನೆ",
+                    note: "ಸೂಚನೆ",
+                    message: "ಸಂದೇಶ",
                     footer_note:
                         "ಎಲ್ಲ ದಿನಾಂಕಗಳು ಮತ್ತು ಸಮಯಗಳು ಸೂಚಿಸಿದ ಸ್ಥಳದ ಸ್ಥಳೀಯ ಸಮಯದಲ್ಲಿವೆ. " +
                         "ಪ್ರತಿ ನಗರದ ಮೂಲ ವಿವರಗಳು ದೃಕ್ ಪಂಚಾಂಗಕ್ಕೆ ಸಂಪರ್ಕಿಸಲ್ಪಟ್ಟಿವೆ."

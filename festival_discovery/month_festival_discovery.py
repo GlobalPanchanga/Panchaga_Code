@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 """
 Month Festival Discovery
@@ -21,9 +21,8 @@ Important date-strategy rule
 * ANCHOR_SEARCH engines (Ekadashi, Krishna Jayanthi) use Drik's displayed date
   only to locate the candidate cycle. Their independent engine determines the
   final observance.
-* CITY_SPECIFIC_EXACT_DATE engines (Grahana, Sankramana, Nag Panchami,
-  Varamahalakshmi, Kalki Jayanthi) use each city's displayed discovery date
-  directly.
+* CITY_SPECIFIC_EXACT_DATE engines (Grahana, Sankramana and standard
+  date-only festivals) use each city's displayed discovery date directly.
 
 This program DOES NOT modify special_events_master_YYYY.csv and DOES NOT run
 festival engines.  It prepares the discovery evidence and recommended commands.
@@ -76,7 +75,7 @@ AFTER_DATE_WAIT_MS = 7000
 BETWEEN_CITIES_MS = 2500
 CAPTCHA_SAFE_WAIT_MS = 2500
 
-DISCOVERY_SCHEMA_VERSION = "V7_EVENT_DETAIL_URL_CAPTURE"
+DISCOVERY_SCHEMA_VERSION = "V8_3_FESTIVAL_SECTION_BOUNDARY"
 
 WEEKDAYS = {
     "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"
@@ -90,6 +89,17 @@ ENGINE_SCRIPT_PATHS = {
     "NAG_PANCHAMI": Path("festival_engines/standard_festival_engine.py"),
     "VARAMAHALAKSHMI": Path("festival_engines/standard_festival_engine.py"),
     "KALKI_JAYANTHI": Path("festival_engines/standard_festival_engine.py"),
+    "VARAHA_JAYANTHI": Path("festival_engines/standard_festival_engine.py"),
+    "GANESHA_CHATURTHI": Path("festival_engines/standard_festival_engine.py"),
+    "RISHI_PANCHAMI": Path("festival_engines/standard_festival_engine.py"),
+    "VAMANA_JAYANTHI": Path("festival_engines/standard_festival_engine.py"),
+    "ANANTA_CHATURDASHI": Path("festival_engines/standard_festival_engine.py"),
+    "PITRUPAKSHA_BEGINS": Path("festival_engines/standard_festival_engine.py"),
+    "NAVRATRI_BEGINS": Path("festival_engines/standard_festival_engine.py"),
+    "SARASWATI_PUJA": Path("festival_engines/standard_festival_engine.py"),
+    "DURGA_ASHTAMI": Path("festival_engines/standard_festival_engine.py"),
+    "MAHA_NAVAMI": Path("festival_engines/standard_festival_engine.py"),
+    "VIJAYADASHAMI": Path("festival_engines/standard_festival_engine.py"),
 }
 
 ANCHOR_SEARCH_ENGINES = {
@@ -103,6 +113,17 @@ CITY_SPECIFIC_EXACT_DATE_ENGINES = {
     "NAG_PANCHAMI",
     "VARAMAHALAKSHMI",
     "KALKI_JAYANTHI",
+    "VARAHA_JAYANTHI",
+    "GANESHA_CHATURTHI",
+    "RISHI_PANCHAMI",
+    "VAMANA_JAYANTHI",
+    "ANANTA_CHATURDASHI",
+    "PITRUPAKSHA_BEGINS",
+    "NAVRATRI_BEGINS",
+    "SARASWATI_PUJA",
+    "DURGA_ASHTAMI",
+    "MAHA_NAVAMI",
+    "VIJAYADASHAMI",
 }
 
 
@@ -765,8 +786,17 @@ def choose_event_detail_url(
                 score += 50
 
         if target_is_sankranti:
-            if "sankranti" in low_href or "sankramana" in low_href:
-                score += 40
+            # Sankranti labels can coexist with generic zodiac/moonsign links such
+            # as /panchang/moonsign/kanya-rashi-date-time.html. Those pages are
+            # NOT festival detail pages, even though words like "Kanya" match.
+            # For a Sankranti event, only accept a Sankranti/Sankramana URL family.
+            if (
+                "/panchang/moonsign/" in low_href
+                or "rashi-date-time" in low_href
+                or ("sankranti" not in low_href and "sankramana" not in low_href)
+            ):
+                continue
+            score += 40
 
         if target_is_ekadashi and "ekadashi" in low_href:
             score += 25
@@ -834,7 +864,14 @@ def extract_month_festival_summary(
         raise RuntimeError(f"Could not find Month Festival summary heading: {heading}")
 
     section = page_text[pos + len(heading):]
+    # Hard-stop the Month Festival summary before Drik's recommendation /
+    # discovery modules.  Those modules can contain date-like number + weekday
+    # pairs (for example "28" followed by "Wednesday"), which the text parser
+    # would otherwise mistake for another festival date block.  "Discover more"
+    # is the observed boundary immediately after the real festival entries.
+    # The remaining markers are older/fallback section boundaries.
     stop_candidates = [
+        "Discover more",
         "Hindu calendar",
         "Hindu Calendar",
         "Lunar Month List",
@@ -1221,7 +1258,13 @@ def build_command(
         )
         return command, "READY"
 
-    if engine in {"NAG_PANCHAMI", "VARAMAHALAKSHMI", "KALKI_JAYANTHI"}:
+    if engine in {
+        "NAG_PANCHAMI", "VARAMAHALAKSHMI", "KALKI_JAYANTHI",
+        "VARAHA_JAYANTHI", "GANESHA_CHATURTHI", "RISHI_PANCHAMI",
+        "VAMANA_JAYANTHI", "ANANTA_CHATURDASHI", "PITRUPAKSHA_BEGINS",
+        "NAVRATRI_BEGINS", "SARASWATI_PUJA", "DURGA_ASHTAMI",
+        "MAHA_NAVAMI", "VIJAYADASHAMI",
+    }:
         command = (
             f"python {quote_ps(str(script))} "
             f"--month {month_id} --engine-key {engine} "
@@ -1547,7 +1590,7 @@ def main() -> None:
         ):
             print(
                 f"SCHEMA UPGRADE: rescanning "
-                f"{clean(row.get('display_city', ''))} once to capture event URLs."
+                f"{clean(row.get('display_city', ''))} once for the updated discovery schema."
             )
         to_scan.append((idx, row))
 

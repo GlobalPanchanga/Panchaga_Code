@@ -137,6 +137,11 @@ CACHE_DIR = OUTPUT_ROOT / "cache"
 CACHE_CSV = CACHE_DIR / "ekadashi_scan_cache.csv"
 CACHE_SCHEMA_VERSION = "2.0"
 
+# When True, persistent cache READS are bypassed for the current run.
+# Fresh Drik observations are still written to the SAME shared cache, replacing
+# only matching (Place Key, Date) rows and preserving unrelated cache rows.
+REFRESH_CACHE_READS = False
+
 # If True, write the cache after every fresh page scan so an interrupted run
 # can resume without repeating completed city/date requests.
 SAVE_CACHE_AFTER_EACH_SCAN = True
@@ -923,11 +928,12 @@ class CitySession:
         if date_str in self.observations:
             return self.observations[date_str]
 
-        cached = self.cache.get(self.place_key, date_str)
-        if cached is not None:
-            self.observations[date_str] = cached
-            print(f"  CACHE {self.city}: {date_str} -> {cached.get('Sunrise Tithi','')}")
-            return cached
+        if not REFRESH_CACHE_READS:
+            cached = self.cache.get(self.place_key, date_str)
+            if cached is not None:
+                self.observations[date_str] = cached
+                print(f"  CACHE {self.city}: {date_str} -> {cached.get('Sunrise Tithi','')}")
+                return cached
 
         anchor = datetime.strptime(ANCHOR_DATE, "%Y-%m-%d").date()
         target = datetime.strptime(date_str, "%Y-%m-%d").date()
@@ -1801,7 +1807,7 @@ def public_note_for_action(
     if c.condition_code == "NORMAL":
         return (
             "Normal Ekadashi. **Observe Upavaasa today.** Ekadashi began before "
-            "Arunodaya and no two-day exception applies."
+            "Arunodaya."
         )
 
     if c.condition_code == "DASHAMI_VIDDHA_THEN_VALID_EKADASHI":
@@ -2495,6 +2501,15 @@ def parse_cli_args() -> argparse.Namespace:
         ),
     )
     parser.add_argument(
+        "--refresh",
+        action="store_true",
+        help=(
+            "Ignore persistent Ekadashi cache reads for this run and fetch fresh Drik data. "
+            "Fresh observations still overwrite matching Place Key + Date rows in the SAME "
+            "shared cache; unrelated cache rows are preserved."
+        ),
+    )
+    parser.add_argument(
         "--profile-dir",
         type=Path,
         default=PLAYWRIGHT_PROFILE_DIR,
@@ -2522,6 +2537,7 @@ def apply_cli_args(args: argparse.Namespace) -> None:
     global CYCLE_NAME, ANCHOR_DATE, TEST_CITY_NAMES, TEST_CITY_LIMIT, SUBSET_RUN_LABEL
     global INPUT_CSV, OUTPUT_ROOT, CACHE_DIR, CACHE_CSV, PLAYWRIGHT_PROFILE_DIR
     global HEADLESS, MAX_DYNAMIC_DISTANCE_DAYS, MAX_FRESH_SCANS_PER_CITY
+    global REFRESH_CACHE_READS
 
     datetime.strptime(args.anchor, "%Y-%m-%d")
     CYCLE_NAME = clean(args.cycle)
@@ -2545,6 +2561,7 @@ def apply_cli_args(args: argparse.Namespace) -> None:
     CACHE_DIR = OUTPUT_ROOT / "cache"
     CACHE_CSV = Path(args.cache) if args.cache is not None else CACHE_DIR / "ekadashi_scan_cache.csv"
     PLAYWRIGHT_PROFILE_DIR = Path(args.profile_dir)
+    REFRESH_CACHE_READS = bool(args.refresh)
 
     if args.headless:
         HEADLESS = True
@@ -2579,6 +2596,10 @@ def main() -> None:
     print(f"Output: {'SUBSET / BACKFILL (canonical files preserved)' if is_subset_run else 'FULL CYCLE'}")
     print(f"Run dir: {run_dir}")
     print(f"Cache : {CACHE_CSV}")
+    if REFRESH_CACHE_READS:
+        print("Cache mode: REFRESH - persistent cache reads bypassed; fresh rows overwrite matching Place Key + Date entries")
+    else:
+        print("Cache mode: NORMAL - valid persistent cache rows may be reused")
     print("Artifact layout: festival_runs/YYYY/MM/ekadashi/<cycle>/")
 
     cache = ObservationCache(CACHE_CSV)

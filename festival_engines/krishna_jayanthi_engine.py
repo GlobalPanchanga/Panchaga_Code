@@ -1755,6 +1755,10 @@ def build_final_message(row: dict[str, Any]) -> str:
             )
         minutes = int((puja_end - puja_start).total_seconds() // 60)
         lines.append(f"Duration - {minutes // 60:02d} Hours {minutes % 60:02d} Mins")
+        lines.append(
+            "After performing the Nishita Puja during the night, the fast should be broken "
+            "the following morning only after completing the regular morning Puja."
+        )
 
     return " | ".join(lines)
 
